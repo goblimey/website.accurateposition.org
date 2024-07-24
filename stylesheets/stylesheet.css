@@ -1,0 +1,94 @@
+#logo a {
+	float: left;
+	text-decoration:none;
+	font-family:Helvetica;
+	font-size:150%;
+	color:royalblue;
+}
+
+#logo a h1 {
+	margin:0;
+	padding:0;
+}
+
+#logo a:visited {
+	text-decoration:none;
+	font-family:Helvetica;
+	font-size:150%;
+	color:royalblue;
+}
+
+#logo a:visited {
+	text-decoration:none;
+	font-family:Helvetica;
+	font-size:150%;
+	color:royalblue;
+}
+
+#logo a:hover {
+	text-decoration:none;
+	font-family:Helvetica;
+	font-size:150%;
+	color:royalblue;
+}
+
+#logo a:active {
+	text-decoration:none;
+	font-family:Helvetica;
+	font-size:150%;
+	color:royalblue;
+}
+
+#topmenu {
+	width:100%;
+	vertical-align:bottom;
+}
+
+#topmenu-buttons {
+	width:90%;
+	vertical-align:bottom;
+}
+
+#topmenu-buttons ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	vertical-align:bottom;
+}
+
+#topmenu-buttons li {
+	float: left;
+	margin: 0 0.15em;
+	vertical-align:bottom;
+}
+
+#topmenu-buttons li a {;
+	height: 2em;
+	line-height: 2em;
+	float: left;
+	width: 6em;
+	display: block;
+	border: 0.1em solid #dcdce9;
+	color: #0d2474;
+	text-decoration: none;
+	text-align: center;
+	vertical-align:bottom;
+
+}
+
+#page {
+	clear:both;
+}
+
+#page-button a {;
+	height: 2em;
+	line-height: 2em;
+	width: 7em;
+	display: block;
+	border: 0.1em solid #dcdce9;
+	color: #0d2474;
+	text-decoration: none;
+	text-align: center;
+}
+
+
