@@ -18,15 +18,15 @@ ${webRoot}/%.html: %.m4.html ${includes}
 	m4 $< > $@
 
 stylesheets:
-	mkdir -p ${webroot}/stylesheets
+	mkdir -p ${webRoot}/stylesheets
 	cd stylesheets; make
 
 projects:
-	mkdir -p ${webroot}/projects
+	mkdir -p ${webRoot}/projects
 	cd projects; make
 
 gnss:
-	mkdir -p ${webroot}/gnss
+	mkdir -p ${webRoot}/gnss
 	cd gnss
 	make
 
