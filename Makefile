@@ -10,7 +10,7 @@ webRoot=/var/www/html
 # Included files.
 includes=leader.m4.html trailer.m4.html definitions.m4
 
-all: ${webRoot}/index.html stylesheets projects gnss downloads
+all: ${webRoot}/index.html ${includes} stylesheets projects gnss downloads
 
 ${webRoot}/index.html: ${includes}
 

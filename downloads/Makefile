@@ -12,7 +12,7 @@ includes=${sourceRoot}/leader.m4.html ${sourceRoot}/trailer.m4.html ${sourceRoot
 # The destination for the pages produced, eg /var/www/html/projects/grpc.
 destination=${webRoot}/${nameOfThisDirectory}
 
-all: ${destination}/index.html
+all: ${destination}/index.html ${includes}
 
 ${destination}/%.html: %.m4.html
 	mkdir -p ${destination}
