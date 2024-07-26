@@ -1,5 +1,9 @@
 body {
-	font-family: 'Arial'
+	font-family: 'Arial';
+}
+
+copyrightNotice {
+	font-size: small;
 }
 
 #topmenu {}
