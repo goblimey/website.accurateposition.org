@@ -14,6 +14,6 @@ destination=${webRoot}/${nameOfThisDirectory}
 
 all: ${destination}/index.html ${includes}
 
-${destination}/%.html: %.m4.html
+${destination}/%.html: %.m4.html ${includes}
 	mkdir -p ${destination}
 	m4 -DsourceRoot=${sourceRoot} $< > $@
