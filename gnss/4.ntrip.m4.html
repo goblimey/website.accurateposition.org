@@ -1,0 +1,216 @@
+include(sourceRoot/definitions.m4)
+define(pageTitle, `GNSS')
+include(sourceRoot/leader.m4.html)
+
+linksList(`3.trimble.html', `index.html', `4.ntrip.html')
+
+<h2>RTCM</h2>
+
+
+<p>
+    The Radio Technical Commission for Maritime Services (RTCM)
+    produced a standard protocol for sending satellite
+    observation data over a data link.
+    The protocol is also called RTCM.
+    It allows a base station from one manufacturer to
+    send signal data to a rover from
+    another manufacturer.
+    The RTCM protocol is currently at version 3.
+</p>
+<p>
+    See later for more details of RTCM.
+</p>
+<p>
+    Trimble equipment uses Trimble's own protocols.
+    It can also use RTCM,
+    <b><i>but</i></b> only via Trimble's network,
+    so you still have to pay the subscription.
+    If you are in a part of the world
+    where Trimble's own correction service
+    can't provide centimetre accuracy,
+    you can use an RTCM feed to drive your Trimble device.
+</p>
+<p>
+    Other manufacturers' equipment uses RTCM
+    over radio or the Internet,
+    so you there's no running cost.
+    I've used equipment from Emlid
+    and SparkFun
+    that works that way.
+</p>
+
+<h2>NTRIP</h2>
+
+<p>
+    The base station can send out its observations using
+    Long Range Radio (LoRa) as the data link.
+    In theory,
+    any rover within a few kilometres should be able to pick up the signal
+    but LoRa systems can be plagued by interference.
+    which work up high
+    with line of sight to to the base station.
+    My experience of using LoRa
+    to drive a survey device on the ground is not so good.
+</p>
+<p>
+    If your base and rover both have a handy Internet connection,
+    the base can send the signal data over the Internet using NTRIP
+    (Networked Transmission of RTCM using Internet Protocols).
+    It's a fairly simple streaming data protocol,
+    similar in concept to the protocols that
+    companies like Netflix use to stream programmes
+    to your TV.
+</p>
+<p>
+    If your base station is in your office
+    it can use your business broadband connection.
+    The load it puts on the network is very low.
+    I run a base station from my garden shed
+    sending to the outside world via my home
+    broadband connection.
+</p>
+<p>
+    A rover used for surveying typically uses a nearby
+    mobile phone as an Internet modem.
+</p>
+<p>
+    A device on the Internet is easy to find
+    if it has a published domain name.
+    To avoid the rover having to find
+    the base station,
+    the two communicate via a
+    piece of software
+    called a <b><i>caster</i></b> (a broadcaster)
+    running on a server with a fixed IP address and a
+    published domain name.
+</p>
+<p>
+    The caster is a specialist
+    web server and uses the <b><i>publisher/subscriber</i></b>
+    model.
+    It offers a set of named <b><i>endpoints</i></b>.
+    The base station publishes its signal data
+    by sending them to one of the caster's endpoints.
+    A rover subscribes to the same endpoint
+    and receives the stream of data that the base station sends.
+</p>
+<pre>
+    NTRIP
+                                                  ---> rover
+------------                   --------   NTRIP  /
+| NTRIP base |     NTRIP      | NTRIP  | -------/
+| station    | -------------> | caster |        \
+------------                   --------          \
+                                                  ---> rover
+</pre>
+<p>
+    The caster's home page lists its mountpoints,
+    one per line,
+    with information such as the mountpoint's location
+    and the RTCM messages in its data stream.
+    (For UK mountpoints,
+    look for "GBR" in the country field.)
+</p>
+<p>
+    The signals are sent by the satellites every second.
+    The base station receives them
+    and sends them to the endpoint
+    in a stream of RTCM messages.
+    More than one rover can subscribe to the same endpoint.
+    When a rover is running it sends
+    a series of http requests to its caster,
+    asking for any recent data on its chosen endpoint.
+</p>
+
+
+<p>
+    The <a href="">International GNSS Service(IGS)</a>
+    coordinates an international network
+    of NTRIP base stations and casters.
+    They claim that these have very precise locations,
+    down to millimetre accuracy.
+    The service is free but you need to apply for an account
+    <a href="https://igs.org/rts/user-access/">here</a>.
+    The IGS caster for Europe is
+    <a href="https://euref-ip.net/">euref-ip.net</a>.
+    Looking at the home page,
+    currently (in 2023) there are four IGS base stations
+    in the UK.
+    My nearest is run by Imperial College in London.
+    The others are in
+    Herstmonceux in East Sussex,
+    Daresbury in Cheshire,
+    and Inverness in Scotland.
+</p>
+<p>
+    The base station publishes its position
+    in the stream of messages
+    and the rover works out its position relative
+    to that.
+    The base position is bound to some
+    reference frame,
+    so the rover inherits that.
+    According to
+    <a href="http://acc.igs.org/igs-frames.html">this link</a>,
+    since 2017 the IGS base stations have published their position
+    within the International
+    Terrestrial Reference Frame ITRF2014,
+    so your rover will inherit that.
+    You don't inherit a geoid model from the base,
+    so you have to choose a sensible one.
+    GEOID18 is a good match for ITRF2014.
+</p>
+<p>
+    (So if I want to compare positions
+    measured with a Trimble device
+    and a rover driven by an IGS base station,
+    I should set the Trimble's reference frame
+    to ITRF2014 and its geoid to GEOID18.)
+</p>
+<p>
+    The NTRIP protocol is currently at version 2.
+    Some base stations and casters
+    still work at version 1 of the protocol.
+    The NTRIP standard specifies
+    that a rover should be able to use either version
+    and detect when it connects
+    which version the caster is using.
+</p>
+<p>
+    You can run your own caster.
+    NTRIP was invented by the
+    German organisation
+    Bundesamt für Kartographieund Geodäsie (BKG) -
+    in English, the Federal Agency for
+    Cartography and Geodesy.
+    To show how it can be used,
+    they published an open-source caster.
+    Originally it was free.
+</p>
+<p>
+    They still maintain this software, but they charge
+    1,000 Euros for the latest version.
+    You can get that
+    <a href=' https://igs.bkg.bund.de/ntrip/bkgcaster.'>here</a>.
+</p>
+<p>
+    You can find a copy of the earlier free version
+    <a href='https://github.com/nunojpg/ntripcaster'>here</a>.
+    To use it, you need to understand
+    how to build it from its source code and
+    install it on a server.
+</p>
+<p>
+    The Docker system makes it much easier to build
+    and install software
+    so I support a version of BKG's caster that runs under Docker.
+    You can find that
+    <a href='https://github.com/goblimey/ntripcaster/'>here</a>
+    You will find full instruction on how to build and configure it
+    later.
+</p>
+<p>
+    linksList(`3.trimble.html', `index.html', `4.ntrip.html')
+</p>
+
+include(sourceRoot/trailer.m4.html)

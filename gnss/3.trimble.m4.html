@@ -1,0 +1,219 @@
+include(sourceRoot/definitions.m4)
+define(pageTitle, `trimble')
+include(sourceRoot/leader.m4.html)
+
+linksList(`2.position.html', `index.html', `4.ntrip.html')
+
+<h2>Trimble</h2>
+<p>
+    Greg Milner's book <b><i>Pinpoint</i></b>
+    explains that Charlie Trimble,
+    an electronics engineer and amateur sailor,
+    was one of the first people to spot the commercial
+    potential of the then emerging GPS system.
+    He founded Trimble Navigation,
+    initially developing SatNavs for boats and cars
+    and later developing a range of accurate
+    GNSS systems for land surveying.
+    I use Trimble's entry-level survey device, the Catalyst.
+</p>
+<p>
+    (Trimble
+    is not the only supplier of survey-standard equipment,
+    there are lots of others,
+    but I only talk here about stuff that I've used.)
+</p>
+<p>
+    Trimble's survey equipment uses their own proprietary protocols
+    and their own RTK network.
+    Access to the network is by subscription,
+    either monthly or by the hour.
+</p>
+<p>
+    My Trimble Catalyst,
+    is described as a GNSS Antenna.
+    It's designed to screw onto a standard surveyor's pole
+    or tripod
+    and it uses a smartphone
+    to provide the signal processing,
+    the display and the Internet connection.
+    It only works with an Android phone,
+    which is a nuisance if you already have
+    an Apple device.
+</p>
+<p>
+    Without a base station
+    it can find its position to within about 3 metres,
+    within a few seconds in good conditions.
+    When connected to the Trimble RTK network,
+    the accuracy improves to 2 or 3 centimetres.
+</p>
+
+<p>
+    The subscription to the Trimble RTK network
+    costs about $300 per month (check the Trimble website for the current figure).
+    For a professional surveyor this makes sense as you can get
+    2 to 3 centimetre accuracy across Europe and the USA
+    and some level of increased accuracy anywhere in the world.
+</p>
+<p>
+    Trimble also sells on-demand access to their RTK network.
+    You can buy ten or one hundred one-hour blocks of time.
+    Each time you connect to the RTK network, you burn one of your hours.
+    At the end of the hour,
+    it asks if you want to burn another.
+    In the UK they cost £12 per block including VAT,
+    so £120 minimum purchase.
+    I'm not a professional surveyor
+    and I only need to use my Catalyst occasionally,
+    so I use their on-demand service.
+</p>
+<p>
+    Just to be clear,
+    the Cat (and any other Trimble product)
+    only works accurately when connected to their RTK service,
+    which costs money.
+    If the RTK service provided by Trimble
+    in your region don't give you two centimetre accuracy,
+    you can supply your own NTRIP feed (see later)
+    <b><i>but</i></b> only via their network,
+    at the same subscription price.
+</p>
+<p>
+    The Catalyst is Trimble's entry level product.
+    Given that,
+    it does a great job,
+    but it can be defeated by tree cover
+    or even just cloud.
+    Last time I used it I had a fairly open view of the sky,
+    well away from trees,
+    but there was a very thin covering of cloud.
+    I had to wait for three or four minutes
+    before the device
+    managed to see enough satellites to start to work.
+    If you want to do serious work and your time is valuable,
+    you may want to buy one of their more expensive offerings.
+</p>
+<p>
+    Using the Catalyst has taught me some some useful lessons.
+</p>
+<p>
+    Currently I can only buy
+    a block of RTK hours through
+    a Trimble dealer,
+    in the case of the UK, that's
+    <a href='https://www.korecgroup.com/'>Korec</a>,
+    who also supplied my Catalyst.
+    Lovely people and very helpful throughout.
+    but buying a block of hours from them
+    is a manual process
+    and takes time.
+    So, when you need a block of hours
+    to do some work,
+    don't wait until the last minute
+    to buy it.
+</p>
+<p>
+    Trimble have an online licence server
+    that manages the blocks you've bought.
+
+<p>
+    The Cat only works if it can receive signals
+    from enough satellites - four, as described earlier.
+    If you log in to the RTK network
+    but you don't have enough satellite
+    coverage,
+    <b><i>you still burn one of your hours</i></b>.
+    Always check that you can get an uncorrected fix first,
+    then log in and start burning money.
+</p>
+<p>
+    Once you connect,
+    you may still get messages for a few minutes
+    saying that it can't see any satellites,
+    even you could a minute ago.
+    Be patient, it can take time.
+</p>
+<p>
+    My model has a cable wired into it with a USB B plug on the other end.
+    That's to plug into the phone and connect to the apps,
+    but my phone is USB C.
+    Trimble supply a converter cable,
+    but as always that makes the connection a bit flaky.
+    The app often complains that
+    it's lost connectivity.
+    Unplug the converter cable
+    and plug it in again.
+</p>
+<p>
+    (USB C is becoming the standard for phones,
+    so Trimble may have reworked the cable by now.)
+</p>
+<p>
+    The Cat has no internal battery.
+    It can take power from your phone,
+    but that you may want to avoid that drain.
+    There's a USB B socket
+    that takes power
+    via a second cable.
+    You can use a mobile phone power bank
+    and you get a small power bank with the cat.
+    I use a bigger one with higher capacity.
+    I carry two so that I can also keep the phone
+    charged up.
+</p>
+<p>
+    You control the Cat using the Trimble Mobile Manager app
+    on your Android phone.
+    When you install that,
+    the Trimble Catalyst App is also installed automatically.
+    It does the signal processing
+    but you never interact with it directly.
+    Both apps are free.
+</p>
+<p>
+    Trimble release new versions of both apps regularly
+    and you need to keep them up to date
+    or things may stop working.
+    I discovered this when they changed their authentication
+    mechanism
+    and the old version of the app could no longer log in to the RTK network.
+    No error message saying why,
+    It just looked as if I was supplying the wrong password.
+    You don't want this sort of problem
+    when you're out doing a survey,
+    so before you go out,
+    check for updates to both apps.
+</p>
+<p>
+    When you buy a block of hours,
+    they don't work until you activate them.
+    If you buy ten on-demand hours and activate them,
+    after 12 months they expire and evaporate. <b>No refund</b>.
+    I read somewhere that if you don't activate them,
+    they activate themselves after three months,
+    and then evaporate a year later.
+    Don't buy a block of hours until you need it
+</p>
+<p>
+    (I recently met reps from Korec and Trimble
+    at a trade show and I lobbied them,
+    pointing out that (a)
+    they should sell the hours through a web page
+    and (b) having the hours evaporate
+    after a year is a tad annoying.
+    Apparently,
+    allowing them to run for longer
+    creates an accounting problem,
+    but that doesn't seem to me to justify
+    the practice.)
+</p>
+
+
+
+
+
+<p>
+    linksList(`2.position.html', `index.html', `4.ntrip.html')
+</p>
+include(sourceRoot/trailer.m4.html)
