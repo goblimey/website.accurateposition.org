@@ -5,22 +5,32 @@ include(sourceRoot/leader.m4.html)
 linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 
 
-<h2>Finding Your Position Using GNSS</h2>
+<h2>Navigation by Satellite</h2>
 <p>
-    A GNSS device on the ground receives signals from the satellites and
-    uses a bit of mathematics similar to trigonometry to find
+    To find its position using the
+    Global Navigation Satellite System (GNSS),
+    a receiver on the ground receives radio signals
+    from the navigation satellites and
+    uses a bit of mathematics to find
     its
     position.
     It needs signals from 4 satellites to do that.
     A multi-constellation receiver can
     use
-    signals from all of the constellation and
-    in good conditions upwards of twenty satellites
-    will be visible to it at any time.
+    signals from all of the constellation.
+    Where I live,
+    upwards of twenty satellites
+    will be visible at any time
+    (visible meaning that my equipment
+    can detect the signals).
 </p>
 <p>
-    The satellites broadcast signals of different types
+    The satellites broadcast radio
+    signals of different types
     on different frequency bands.
+    Each signal type gives
+    different information,
+
     The cheaper GNSS receivers such as the one in a smartphone
     can only receive on one frequency band.
     More expensive <b><i>dual band</i></b> devices can
@@ -28,8 +38,8 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     so can receive more types of signals.
 </p>
 <p>
-    Some of the signals are encrypted and are meant to
-    be used by government agencies such as the military and
+    Some of the signals are encrypted and are
+    used by government agencies such as the military and
     the emergency services.
     The UK government used to have access to the encrypted
     messages from the European Galileo satellites but
@@ -47,9 +57,8 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 <p>
     Blewitt's paper describes some fairly advanced
     mathematical techniques.
-    Fortunately,
-    they are taken care of by the equipment
-    and you don't need to understand it in detail
+    The equipment takes care of the calculations
+    so you don't need to know anything about them
     to use a receiver,
     but some knowledge of what's going on helps,
     especially when things go wrong.
@@ -69,17 +78,17 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     Blewitt's paper is over twenty years old and things have changed a bit.
     There are now more <b><i>constellations</i></b> of navigation satellites.
     As well as the original Global Positioning System (GPS),
-    there is now Glonass,
+    the Glonass,
     Beidou
-    and Galileo,
-    Each covering the whole of the Earth.
+    and Galileo constellations are all running.
+    Each of them covers the whole of the Earth.
     A receiver anywhere
     with a clear view of the sky
     should be able to see signals from some satellites
     from each of those constellations.
 </p>
 <p>
-    Blewitt's paper describes
+    The paper describes
     the Selective Accuracy (SA) feature,
     whereby
     the GPS signal was partly encrypted
@@ -90,48 +99,105 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 <p>
     The paper describes a technique
     called Point Positioning (PP) that could be used
-    to defeat Selective Acccuracy
+    to defeat Selective Accuracy
     and find a position within about three metres.
-    PP is no longer useful
+    With SA turned off, PP is redundant
     but a similar technique called
     Precise Point Positioning (PPP)
     is still used to post-process
     the results of a survey
-    and correct the position to two-centimetre accuracy.
+    and correct them to centimetre accuracy.
 </p>
 <p>
     A number of organisations offer a free PPP
     service including
     <a href='https://webapp.csrs-scrs.nrcan-rncan.gc.ca/geod/tools-outils/ppp.php'>this one</a>
     from
-    the Canadian government's organisation
+    the Canadian government's
     Natural Resources Canada.
 </p>
 <p>
-    When using a PPP service to get an accurate survey
+    When using a PPP service to process a survey
     you must be aware of the reference frame
-    in which the positions it produces are embedded.
-    At two-centimetre accuracy,
+    in which the positions are embedded.
+    At centimetre accuracy,
     the results will be different
     in each frame.
+    Natural Resource Canada's service
+    currently (2024)
+    produces results in the ITRF2020/IGS20 frame.
 </p>
 
 <h3>Principles of GNSS</h3>
 <p>
-    Each satellite carries an atomic clock,
-    so it knows the time very accurately.
-    It broadcasts signals giving the time,
-    once per second, on the second.
-    Less frequently it also broadcasts
-    an <b><i>ephemeris</i></b>,
-    a table that gives its expected positions
-    in the near future
+    The GNSS satellites follow elliptical orbits
+    one focus of which is the centre of mass of the Earth.
+    Each orbit takes one <b><i>sidereal day</i></b>,
+    which is about 23 hours 56 minutes and 4 seconds.
+    (That's the time required for the Earth to rotate once
+    relative to the background of the stars)
+    Each satellite is always roughly 20,000 kilometres away
+    from the surface of the Earth.
+
+</p>
+<p>
+    An <b><i>ephemeris</i></b>
+    (plural <b><i>ephemerides</i></b>)
+    is a table giving the positions
+    of objects in the sky such the planets
+    and, nowadays,
+    Earth-orbiting satellites.
+    Each navigation satellite holds an ephemeris
+    of its expected positions in the near future
     as it moves around its orbit.
 </p>
 <p>
+    Each satellite carries an atomic clock,
+    so it knows the time very accurately.
+    It broadcasts a signal giving the time
+    once every second, on the second.
+    Less frequently it also broadcasts
+    its ephemeris.
+</p>
+
+<p>
+    A GNSS receiver with an equally accurate atomic clock
+    could use the time signals from three satellites
+    to find its position.
+    The transit times of the signals
+    and the speed of light in a vacuum
+    give the distance to each satellite.
+    The ephemerides give the position of each satellite.
+    A bit of trigonometry gives the receiver its own position.
+    To do this involves solving
+    an equation with three unknowns,
+    requiring three sets of input.
+</p>
+
+<p>
+    Atomic clocks are big and expensive.
+    A receiver that contains one will not be affordable
+    or portable.
+    The kind of receiver that
+    I can afford takes
+    the signals from four satellites
+    and uses them to calculate
+    both its position
+    in three dimensions <b><i>and</i></b> the time.
+    That involves solving a different equation with four unknowns
+    and requiring four inputs.
+</p>
+<p></p>
+Some people use a GNSS receiver
+just to find the time very precisely.
+The BBC uses GNSS to synchronise its equipment.
+</p>
+<p>
+    So the technique to find your position and time
+    depends on having an accurate ephemeris.
     If you turn a GNSS device off for a short time
     and then turn it back on again,
-    it already has the ephemeries it needs
+    it already has the ephemerides that needs
     and it starts to work immediately.
     If it's been turned off for a while,
     its ephemerides will be out of date
@@ -140,49 +206,21 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     so if your receiver has Internet access,
     the process may be faster.
 </p>
-<p>
-    A GNSS receiver with an equally accurate atomic clock
-    could use the time signals from three satellites
-    to find its position.
-    The transit times of the signals
-    and the speed of light in a vacuum
-    give the distance to each satellite
-    and the ephemerides give the position of each.
-    A bit of trigonometry gives the receiver its own position.
-    To do this it solves an equation with three unknowns,
-    requiring three sets of input.
-</p>
-
-<p>
-    Atomic clocks are big and expensive.
-    A receiver that contains one will not be affordable
-    or portable.
-    The receivers I can afford take
-    the signals from four satellites
-    and use them to calculate both your position
-    in three dimensions <b><i>and</i></b> the time.
-    That involves solving a different equation with four unknowns
-    and requiring four inputs.
-</p>
-<p>
-    Some people use a GNSS receiver
-    to just find the time very precisely.
-    The BBC uses GNSS to synchronise some of its equipment.
-</p>
+<h3>Centimetre-Accurate GNSS</h3>
 <p>
     The technique described in Blewitt's paper
     uses an analysis of the carrier wave
     of the signal rather than its contents,
     so
-    a receiver can use all the signals
-    even when it can't
-    decrypt the encrypted ones.
+    a receiver can make use of all the signals
+    including types that it can't
+    decrypt.
 </p>
 
 <p>
     The calculated distance to the satellite
     is called the <b><i>pseudorange</i></b>,
-    pseudo because it's never quite correct.
+    pseudo because it's almost but not quite correct.
     The signal is distorted,
     particularly by the ionosphere,
     and often
@@ -190,18 +228,22 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     a wall or the side of a hill.
 </p>
 <p>
-    If the signal doesn't travel in a straight line
-    it takes a little longer to arrive.
-    Also,
-    signals at different frequencies
-    may be delayed differently by the Ionosphere,
-    so two signals sent at the same time
-    from the same satellite
-    may arrive at slightly different times,
-    producing two different pseudoranges.
+    The receiver calculates
+    the pseudorange
+    from the transit time of the signal.
+    If two signal at different frequencies from the same satellite
+    take different paths
+    to the receiver,
+    their journeys may take different times.
+    So the pseudorange derived from one signal
+    may be different from the range derived
+    from another signal,
+    even though they were sent from the same satellite at the same time.
+
 </p>
 <p>
-    The satellites are never quite where the
+    Another cause of error is that
+    the satellites are never quite where the
     ephemeris says they should be,
     which causes another error.
     The GNSS ground stations
@@ -213,7 +255,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 <p>
     It takes the various agencies about ten days to
     collate and publish the corrected satellite positions,
-    To get full two-centimetre accuracy
+    To get centimetre accuracy
     from PPP post-processing
     you need to wait until the satellite data is
     ready before submitting
@@ -230,7 +272,8 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     reception is poor.
 </p>
 <p>
-    On its own, given clear signals from four satellites,
+    On its own, given
+    clear signals from four satellites,
     a GNSS receiver can figure out its position to within
     about three metres.
     Receiving signals from more satellites
@@ -240,15 +283,16 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 <p>
     Three metre accuracy is acceptable for vehicle
     navigation
-    but other purposes such as land surveying require more.
+    but purposes such as land surveying require more.
 </p>
+
 
 
 <h3>Relative Positioning</h3>
 <p>
     If your GNSS receiver is fixed in one position,
     you can use PPP to find its position
-    once and for all accurate to two centimetres.
+    once and for all accurate to two or three centimetres.
     It will then be subject to continental drift but
     that happens at a known rate and you can allow for it.
 </p>
@@ -256,17 +300,21 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     PPP can also be used to post-process a survey
     done by a moving GNSS receiver (a <b><i>rover</i></b>),
     but you have to wait a couple of weeks for the result.
-    If you're trying to drive a fleet of drones
-    through a tightly coreographed sequence,
-    you need accuracy in real time.
-    (You may recall the light shows celebrating
-    King Charles' coronation.
-    The animations were done using drones
-    with lights mounted on them.)
-
 </p>
 <p>
-    Section 6 of Blewitt's paper shows how a rover
+    You may have watched the fireworks and animated
+    light shows celebrating
+    King Charles' coronation.
+    The animations were done using drones
+    with lights mounted on them.
+    Each drone has a GNSS receiver on board
+    telling it where it is.
+    If you're trying to drive a fleet of drones
+    through a tightly choreographed sequence like that,
+    you need centimeter accuracy in real time.
+</p>
+<p>
+    Section 6 of Blewitt's paper shows how a moving rover
     can achieve that
     with the help
     of another GNSS receiver,
@@ -287,6 +335,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     A rover close to it receives the same signals.
     It uses the data from the base
     and the signals that it's receiving
+    from the satellites
     to make a very good estimate
     of its own position <b><i>relative to the base station</i></b>.
 </p>
@@ -298,7 +347,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     its native accuracy of three metres.
 </p>
 <p>
-    How far away is too far away
+    How far is too far
     depends on the equipment.
 </p>
 <p>
@@ -319,7 +368,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 </p>
 
 <p>
-    Since any position assumes some
+    Since the coordinates of any position assumes some
     Terrestrial
     Reference Frame (TRF),
     and the rover works out its position
@@ -330,24 +379,21 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 </p>
 <p>
     On the other hand,
-    your rover doesn't inherit its geoid model
+    the rover doesn't inherit its geoid model
     from the base station.
-    In fact the base station doesn't need a geoid model
-    because that's only used to work out your
-    orthometric height and
-    the base doesn't need to do that.
+    The base station doesn't have a geoid model.
     It just has a fixed position configured into it
     and publishes a data stream containing that
     and its satellite observations.
 </p>
-<h3>RTK over the Internet</h3>
+<h3>Real-Time Kinematics</h3>
 <p>
     The technique of using a base station to help a rover find
     its position accurately is called Real-Time Kinetics (RTK).
     In any RTK solution
     the base station transmits a stream of satellite observations
     through some medium
-    and the rover needs to able to receive them.
+    and the rover receives and uses them.
 </p>
 <p>
     The RTCM protocol was designed to support an RTK stream.
@@ -355,20 +401,20 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     the Radio Technical Commission for Maritime Services.
     RTCM specifies the formats of a set of
     messages that can be used to transmit
-    observations of satellite messages from a base station to a rover.
+    observations of satellite signals from a base station to a rover.
 </p>
 <p>
-    You can use a radio link using Long Range Radio (LoRa)
-    devices to broadcast RTCM messages.
-    LoRa works over several kilometres given
+    You can use Long Range Radio (LoRa)
+    to broadcast RTCM messages.
+    LoRa devices work over several kilometres given
     good conditions but
     the frequencies they are allowed to use are limited.
     Other types of device use them and
     and there doesn't seem to be a way to pair
     a transmitter and receiver.
     I don't know what would happen
-    if there was another LoRa device in the vicinity
-    broadcasting RTCM on the same frequency.
+    if there were two LoRa devices in the vicinity,
+    each broadcasting RTCM on the same frequency.
 </p>
 <p>
     Instead of using LoRa,
@@ -386,23 +432,26 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 
 </p>
 <p>
-    So that the two can find each other,
+    To allow the base and rover to
+    find each other,
     the NTRIP protocol uses an intermediary
     called a <b><i>caster</i></b>,
     a specialist web server
     that takes the data from a base station
-    and streams it to one or more rovers.
+    and sends it to one or more rovers.
 </p>
 <p>
     NTRIP is based on standard web protocols
     and the caster is really just a streaming web server,
-    similar in concept to the one that streams
+    similar in concept to the one that
+    Netflix uses to stream
     TV programmes to your phone.
 </p>
 <p>
     I publish an open-source NTRIP caster
     that's very easy to install and configure.
-    You an hire equipment that can run it for $8 per month.
+    You ned equipment to run it on but
+    you an hire that can run it for $8 per month.
     More on that later.
 </p>
 
@@ -477,7 +526,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
     but not on the Emlid website,
     so Emlid may be in the process of withdrawing
     that product.
-    They now seem to be concentrating on their new
+    They seem to be concentrating on their new
     <a href='https://emlid.com/reach/'>Reach M2</a>,
     a dual-band receiver
     supplied in the same tiny package
@@ -490,260 +539,7 @@ linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 </p>
 
 
-<h3>Accurate GNSS in Action</h3>
-<p>
-    Here's a real example from a trip I made in November 2023.
-    The purpose was to measure the position of
-    the Ordnance Survey's trig point at Roy Grove
-    in South London
-    using two devices and compare the results.
-    Ordnance Survey trig points are handy for testing
-    GNSS systems because they are easily recognisable and
-    firmly fixed in place.
-</p>
-<p>
-    As you'll see,
-    the trip wasn't entirely successful
-    due to some mistakes I made,
-    but that's how we learn.
 
-</p>
-<p>
-    My devices were an Emlid Reach RS2
-    taking corrections via NTRIP
-    from a base station at Imperial College London
-    and a Trimble Catalyst using Trimble's correction service.
-    Both devices claim two to three centimetre accuracy,
-    so the positions they report should agree
-    within that range.
-</p>
-<p>
-    The trip was only partially successful
-    because at the time I didn't appreciate
-    the issue of reference frames.
-    I'm going to have to go back and do the measurements again.
-    However, I got some useful data out of it.
-
-</p>
-<p>
-    My Emlid rover is supposed to work at full
-    accuracy when it's within about twenty kilometres
-    of the base.
-    it shows the position
-    of the base
-    and the distance to it
-    on its display.
-    The base position was
-    at ECEF coordinates
-</p>
-<p>
-    (3978703.782, -12141.038, 4968417.486).
-</p>
-<p>
-    The distance to the base was 15.6 Kilometres,
-    well within the range for full accuracy.
-</p>
-
-<p>
-
-    My rover found that it was offset from the base by
-</p>
-<p>
-    -6301.887 metres along the x axis,
-</p>
-<p>
-    +13293.193 metres along the y axis
-</p>
-<p>
-    +5101.254 metres along the z axis.
-</p>
-<p>
-    To find its own position in ECEF form
-    the rover just adds those offsets
-    to the base coordinates:
-<pre>
-                        x          y           z
-base position   3985005.669 -25434.231  4963316.232
-offset            -6301.887  13293.193     5101.254
-rover position  3978703.782 -12141.038  4968417.486
-</pre>
-Bearing in mind that we only expect an accuracy of
-a couple of centimetres,
-you should round the results
-to two decimal places.
-That gives a position somewhere around
-<br>
-<br>
-(3978703.78, -12141.04, 4968417.49)
-<br>
-</p>
-<p>
-    As a sanity check,
-    we can apply Pythagoras' theorem
-    to the offsets and figure out the distance from
-    the rover to the base and check that result.
-    Square each of the offset values, add them together
-    and take the square root.
-    (You can do that in an Excel spreadsheet
-    using the SQRT() function.)
-<pre>
-square root of ((3978703.78 X 3978703.78) + (-12141.04 X  -12141.04) + (4968417.49 X 4968417.49))
-</pre>
-gives a distance of 15570.66 metres.
-The rover said it was 15.6 Kilometres away,
-so that checks out.
-</p>
-<p>
-
-</p>
-<p>
-    ECEF coordinates show
-    your distance from the centre
-    of the Earth along the X, Y and Z axes.
-    This is fine when you want to compare
-    two positions but
-    for other purposes
-    Longitude, latitude and height is more intuitive.
-    The two formats are interchangeable,
-    and so my rover displays its position
-    in the most useful form,
-    latitude, longitude and height.
-    In this case it displayed:
-<pre>
-           Coordinates and Precision
-
-Longitude -0.36568478E    0.010m
-Latitude  51.42647705N    0.010m
-Height    63.904 0.010m   0.010m  
-</pre>
-</p>
-<p>
-    The column on the right is the device's
-    estimate of the precision of the position that it's
-    figured out.
-    This depends upon
-    all sorts of conditions including the state of the ionosphere,
-    the amount of cloud cover
-    and the effect of signals reflecting off surfaces near the two devices.
-    In this case it reports an error of 1 centimetre
-    all round.
-    Impressive, but maybe not entirely plausible.
-</p>
-
-<p>
-    Beyond the twenty kilometre limit the accuracy
-    reduces linearly,
-    so at 40&nbsp;Km, the accuracy in the horizontal
-    will be about 4&nbsp;cm, and so on. </p>
-<p>
-    This trig has no tree cover obstructing the signals,
-    it's quite a way from the
-    nearest building and
-    on that day the sky was cloudless.
-    If your conditions are not so good
-    you may get less precision.
-</p>
-
-<p>
-    The Ordnance Survey publishes the position of all its trig points
-    in OS grid coordinates,
-    in this case
-    easting 513719 and northing 170985.
-    Using
-    <a href="https://www.ordnancesurvey.co.uk/gps/transformation/">
-        the Ordnance Survey coordinate conversion tool
-    </a>
-    I can convert the position that my rover gives me to the same form
-    <b><i>but</i></b> the conversion introduces a significant error.
-    I get easting 513719.801, northing 170985.514,
-    so the results match to within a metre.
-</p>
-<p>
-    That's another useful sanity check,
-    but I'd like to verify the manufacturers'
-    claim that the device is centimetre-accurate.
-    The best I can do is measure
-    the same position with another centimetre-accurate
-    device and compare.
-</p>
-<p>
-    My Trimble Catalyst
-    allows me to choose which reference frame and geoid
-    it uses and
-    I chose WGS84 and EGM96.
-    It displays the latitude and longitude east or west of the prime meridian
-    in degrees, minutes and seconds
-    and the height
-    as both
-    Ellipsoidal height and
-    what it calls height above mean sea level
-    (which is actually
-    the geoidal height,
-    not the Ordnance Survey's definition).
-</p>
-<p>
-    Note: this is where I went wrong.
-    The rover works out its position
-    relative to the base station,
-    in this case, the one at Imperial College.
-    The base broadcastings its position
-    in ECEF coordinates
-    <i>in some reference frame or other</i>.
-    Unless I know which one,
-    I don't know to tell the Cat
-    to use.
-</p>
-<p>
-    Oh well, let's do what we can.
-</p>
-<p>
-    The Catalyst measured the position of the trig as
-</p>
-<p>
-    latitude 51 degrees,
-    25 minutes and 35.317848 seconds,
-</p>
-<p>
-    longitude 0 degrees 21 seconds and 56.463768 seconds to the west of the Greenwich meridian, </p>
-<p>
-    Ellipsoidal height 63.97 metres,
-</p>
-<p>
-    height above mean sea level 17.36 metres
-</p>
-<p>
-    So the Emlid device reports it position as
-    degrees to eight decimal places.
-
-    This is mistake number two,
-    not so serious..
-    The Cat reports the position as
-    degrees, minutes and seconds.
-    I can convert one to the other
-    but it's a nuisance.
-    I now know (but I didn't know then)
-    that I can configure the Cat
-    to use the same form as the Emlid device.
-</p>
-Using the OS conversion tool,
-that converts to an OS grid position of
-<br>
-(513719.801E, 170985.514N),
-<br>
-height above mean sea level 18.236 metres.
-</p>
-
-<p>
-    The use of different reference frames and
-    different notation is a common bugbear
-    with this equipment.
-    Comparing results requires conversion
-    and that introduces its own errors.
-    In particular,
-    the conversion to OS Grid coordinates
-    introduces such a large error that we lose
-    large amounts of our two or three centimetre accuracy.
-</p>
 <p>
     linksList(`1.coordinates.html', `index.html', `3.trimble.html')
 </p>
