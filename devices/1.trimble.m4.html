@@ -2,7 +2,9 @@ include(sourceRoot/definitions.m4)
 define(pageTitle, `trimble')
 include(sourceRoot/leader.m4.html)
 
-linksList(`2.position.html', `index.html', `4.ntrip.html')
+<p>
+    linksFirstPage(`index.html', `2.ntrip.html')
+</p>
 
 <h2>Trimble</h2>
 <p>
@@ -21,7 +23,8 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     (Trimble
     is not the only supplier of survey-standard equipment,
     there are lots of others,
-    but I only talk here about stuff that I've used.)
+    but on this website
+    I only talk here about stuff that I've used.)
 </p>
 <p>
     Trimble's survey equipment uses their own proprietary protocols
@@ -38,7 +41,7 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     to provide the signal processing,
     the display and the Internet connection.
     It only works with an Android phone,
-    which is a nuisance if you already have
+    which is a nuisance if you only have
     an Apple device.
 </p>
 <p>
@@ -58,12 +61,12 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
 </p>
 <p>
     Trimble also sells on-demand access to their RTK network.
-    You can buy blocks of ten or one hundred hours of time.
+    You can buy blocks of ten or one hundred hours of access.
     Each time you connect to the RTK network, you burn one of your hours.
     At the end of the hour,
     it asks if you want to burn another,
     and so on.
-    In the UK they cost £12 per block including VAT,
+    In the UK the hours of access cost £12 per block including VAT,
     so £120 minimum purchase.
     I'm not a professional surveyor
     and I only need to use my Catalyst occasionally,
@@ -78,7 +81,7 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     in your region don't give you centimetre accuracy,
     you can supply your own NTRIP feed (see later)
     <b><i>but</i></b> only via the Trimble network,
-    at the same subscription price.
+    and while burning access hours.
 </p>
 <p>
     The Catalyst is Trimble's entry level product.
@@ -102,58 +105,7 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     Using the Catalyst has taught me some some useful lessons.
 </p>
 <p>
-    Currently I can only buy
-    a block of RTK hours through
-    a Trimble dealer,
-    in the case of the UK, that's
-    <a href='https://www.korecgroup.com/'>Korec</a>,
-    who also supplied my Catalyst.
-    Lovely people and very helpful throughout.
-    but buying a block of hours from them
-    is a manual process
-    and takes time.
-    So, when you need a block of hours
-    to do some work,
-    don't wait until the last minute
-    to buy it.
-</p>
-<p>
-    Trimble have an online licence server
-    that manages the blocks you've bought.
 
-<p>
-    The Cat only works if it can receive signals
-    from enough satellites - four, as described earlier.
-    If you log in to the RTK network
-    but you don't have enough satellite
-    coverage,
-    <b><i>you still burn one of your hours</i></b>.
-    Always check that you can get an uncorrected fix first,
-    then log in and start burning money.
-</p>
-<p>
-    Once you connect,
-    you may still get messages for a few minutes
-    saying that it can't see any satellites,
-    even you could a minute ago.
-    Be patient, it can take time.
-</p>
-<p>
-    My model has a cable wired into it with a USB B plug on the other end.
-    That's to plug into the phone and connect to the apps,
-    but my phone is USB C.
-    Trimble supply a converter cable,
-    but as always that makes the connection a bit flaky.
-    The app often complains that
-    it's lost connectivity.
-    Unplug the converter cable
-    and plug it in again.
-</p>
-<p>
-    (USB C is becoming the standard for phones,
-    so Trimble may have reworked the cable by now.)
-</p>
-<p>
     The Cat has no internal battery.
     It can take power from your phone,
     but that you may want to avoid that drain.
@@ -165,6 +117,12 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     I use a bigger one with higher capacity.
     I carry two so that I can also keep the phone
     charged up.
+</p>
+<p>
+    In general,
+    make sure all the equipment you are using
+    is fully charged.
+    (phone, mobile power banks etc).
 </p>
 <p>
     You control the Cat using the Trimble Mobile Manager app
@@ -189,20 +147,51 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     so before you go out,
     check for updates to both apps.
 </p>
+
 <p>
-    When you buy a block of hours,
-    they don't work until you activate them.
-    If you buy ten on-demand hours and activate them,
-    after 12 months they expire and evaporate. <b>No refund</b>.
-    I read somewhere that if you don't activate them,
-    they activate themselves after three months,
-    and then evaporate a year later.
-    Don't buy a block of hours until you need it
+    My Cat has a cable wired into it with a USB B plug on the other end.
+    That's to plug into the phone and connect to the apps,
+    but my phone is USB C.
+    Trimble supply a converter cable,
+    but as always that makes the connection a bit flaky.
+    The app often complains that
+    it's lost connectivity.
+    Unplug the converter cable
+    and plug it in again.
 </p>
 <p>
-    You can view the state of your on-demand hours using Trimble's
+    The Cat only works if it can receive signals
+    from enough satellites - at least four, as described earlier.
+    If you log in to Trimble's correction service
+    but you don't have enough satellite
+    coverage,
+    <b><i>you still burn one of your hours</i></b>.
+    Always check that you can get an uncorrected fix first,
+    then log in and start burning money.
+</p>
+<p>
+    Once you connect,
+    you may still get messages for a few minutes
+    saying that it can't see any satellites,
+    even you could a minute ago.
+    Be patient, it can take time.
+</p>
+<p>
+    Th correction service is delivered
+    to the phone through the Internet.
+    Another good way to waste money is to connect
+    to it when you don't have good Internet access.
+    It take much longer to find your
+    position.
+    Before you log into the Trimble network,
+    go to your favourite website in a web browser
+    and make sure that your Internet performance is OK.
+</p>
+<p>
+    You can view the state of your blocks of access hours using Trimble's
     <a href='https://license-manager.trimble.com/licenses'>License Manager</a>
     website.
+    You also use this to allow your phone to use a block of correction time.
     Log in using the same account name and password
     that you use to connect your device to the correction network.
     The license Manager shows you
@@ -210,6 +199,33 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     To see when the block expires,
     use the Purchase History link at the bottom of the page.
 </p>
+<p>
+    Currently I can only buy
+    a block of correction hours through
+    a Trimble dealer,
+    in the case of the UK, that's
+    <a href='https://www.korecgroup.com/'>Korec</a>,
+    who also supplied my Catalyst.
+    Lovely people and very helpful throughout.
+    but buying a block of hours from them
+    is a manual process
+    and takes time.
+    So, when you need a block of hours
+    to do some work,
+    don't wait until the last minute
+    to buy it.
+</p>
+<p>
+    If you buy a block of correction hours
+    and activate them,
+    they expire and evaporate
+    twelve months later. <b>No refund</b>.
+    I read somewhere that if you don't activate them,
+    they activate themselves after three months,
+    and then evaporate a year later.
+    Don't buy a block of hours until you need it
+</p>
+
 <p>
     (I recently met reps from Korec and Trimble
     at a trade show and I lobbied them,
@@ -224,11 +240,8 @@ linksList(`2.position.html', `index.html', `4.ntrip.html')
     the practice.)
 </p>
 
-
-
-
-
 <p>
-    linksList(`2.position.html', `index.html', `4.ntrip.html')
+    linksFirstPage(`index.html', `2.ntrip.html')
 </p>
+
 include(sourceRoot/trailer.m4.html)

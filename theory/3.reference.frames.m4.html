@@ -1,0 +1,153 @@
+include(sourceRoot/definitions.m4)
+define(pageTitle, `coordinates')
+include(sourceRoot/leader.m4.html)
+
+<p>
+    linksList(`2.latitude.longitude.height.html', `index.html', `4.ecef.html')
+</p>
+
+
+<h3>Reference Frames</h3>
+<p>
+    Continental drift causes the continents to move around
+    and change shape slowly.
+    In the longer term it builds them up and tears them down.
+</p>
+<p>
+    The UK is part of the Eurasian continent,
+    which is moving north-east at about 2.5 centimetres
+    per year.
+    The line on the ground at Greenwich that marks the
+    Prime Meridian is moving with the drift.
+</p>
+<p>
+    That didn't used to matter because
+    most surveying equipment
+    wasn't accurate enough to notice,
+    but now that we have GNSS receivers accurate to
+    two or three centimetres,
+    it does matter.
+    If you measure the position of anything
+    fixed to the ground in the UK,
+    then come back two years later
+    and measure its position again,
+    it will have moved by 5 centimetres.
+</p>
+<p>
+    For an organisation like the Ordnance Survey,
+    responsible for making maps within one country,
+    a convenient way to deal with this is to define
+    positions on the ground relative to another
+    position on the ground in the same country.
+    The real positions will all move due
+    to continental drift,
+    but the maps will still be consistent
+    within themselves.
+    That leads to the idea of a <b><i>reference frame</i></b>.
+    essentially a version of latitude and longitude
+    with a Prime Meridian
+    fixed in some agreed way,
+    for example, fixed to objects on the ground.
+</p>
+
+
+<h4>WGS84</h4>
+<p>
+    <a href='https://en.wikipedia.org/wiki/World_Geodetic_System'>
+        The World Geodetic system 1984
+    </a> (WGS84) is fixed to the mean movement of the continents,
+    so each continent moves against it constantly.
+    In a world where the axis of spin,
+    the magnetic field and everything on the land and
+    on the sea bed is moving around,
+    WGS84 is the nearest thing we have to a notion of
+    where things really are.
+</p>
+<p>
+    My Trimble Catalyst GNSS receiver
+    figures out its position in the WGS84
+    reference frame
+    but I can set it to convert the results to
+    ETRF89 or one of a range of other
+    reference frames suitable for individual countries.
+</p>
+
+
+<h4>ITRF</h4>
+<p>
+    The <a href="https://itrf.ign.fr/en/solutions/itrf2020">
+        International Terrestrial Reference Frame
+    </a>
+    is a close friend of WGS84
+    but calculated in a different way.
+    The current version is
+    ITRF2020.
+    A quick Google search produces references like
+    <a
+        href="https://www.google.com/search?q=itrf20+versu+wgs84&oq=itrf20+versu+wgs84&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTIKCAEQABiABBiiBDIKCAIQABiABBiiBDIKCAMQABiABBiiBNIBCDc3NTFqMGo5qAIAsAIA&sourceid=chrome&ie=UTF-8">
+        this
+    </a>,
+    explaining that positions in ITRF2020 and WGS84 are almost the same.
+</p>
+<p>
+    As explained later,
+    I use the Canadian Government's Precise Point Positioning
+    service to figure out the position of my base station
+    and it produces results within the ITRF framework.
+    They recently switched from an older version to ITRF2020.
+</p>
+
+<h4>ETRF89</h4>
+<p>
+    Within Europe
+    it makes sense to use the
+    <a href="https://en.wikipedia.org/wiki/European_Terrestrial_Reference_System_1989">
+        European Terrestrial Reference Frame
+    </a>
+    (ETRF89).
+    This is fixed to GNSS ground stations in Europe and Asia
+    and drifts with them.
+    It's convenient for cartography in Europe
+    because if you measure a position in this reference frame
+    and come back a few years later to measure it again,
+    it will not appear to have moved.
+</p>
+<p>
+    At the start of 1989, ETRF89 was set to coincide with ITRF,
+    but
+    continental drift constantly pulls the two apart.
+    By the year 2000 they disagreed by 25 centimetres.
+    To prevent ETRF89 getting too far removed from reality
+    it has to be refactored every few years,
+    producing different versions.
+    The version ETRF2000
+    coincided with ITRF at the start of 2000.
+    Since then there's been more drift
+    and the current version ETRF2020
+    coincides with ITRF as it was at the start of 2020.
+</p>
+<p>
+    This means that when you record a position using ETRF89
+    you have to note which version of the framework you used.
+    If you use ETRF2020 and come back thirty years later
+    to find the same spot,
+    you will either have to use ETRF2020 again
+    or use whatever the latest version is,
+    and correct the result.
+    Getting that wrong could at least lead to you
+    wasting money digging a hole in the wrong place.
+    If you're trying to resolve a boundary dispute,
+    a little detail like that could land you in serious trouble.
+</p>
+<p>
+    Other reference frames are defined
+    that work well for cartography
+    in particular parts of Europe.
+</p>
+
+
+<p>
+    linksList(`2.latitude.longitude.height.html', `index.html', `4.ecef.html')
+</p>
+
+include(sourceRoot/trailer.m4.html)

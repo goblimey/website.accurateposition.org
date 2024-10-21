@@ -1,0 +1,111 @@
+include(sourceRoot/definitions.m4)
+define(pageTitle, `coordinates')
+include(sourceRoot/leader.m4.html)
+
+<p>
+    linksList(`3.reference.frames.html', `index.html', `5.utm.html')
+</p>
+
+
+<h3>Earth-Centred Earth-Fixed (ECEF or "Cartesian") Coordinates</h3>
+<p>
+    The GNSS satellites follow
+    an elliptical orbit,
+    one focus of which is the
+    centre of mass of the Earth.
+    It's fairly natural to specify
+    each satellite's position
+    relative to that point.
+    ECEF format uses cartesian (x, y, z) coordinates
+    measured in metres from that centre.
+    So the coordinates are "Earth Centred".
+</p>
+<p>
+    The axes are "Earth-Fixed"
+    because they
+    run through the centre of the Earth
+
+    and they are fixed
+    to the lines of longitude and latitude:
+</p>
+<p>
+    <img src='../images/ecef.800.jpg' alt='picture of the coordinate system, described in words next'>
+</p>
+<p>
+    The positive Z axis runs from the centre
+    of the Earth and
+    through the North Pole
+    at latitude 90&deg;.
+    The negative Z axis runs through the South Pole at latitude -90&deg;.
+</p>
+<p>
+    The positive X axis runs through
+    the intersection of the Prime Meridian and the Equator
+    at latitude 0&deg; longitude 0&deg;.
+    The negative X axis runs through the
+    opposite side of the Earth at latitude 0&deg;, longitude 180&deg;
+    (close to the Gilbert Islands in the Pacific Ocean).
+</p>
+<p>
+    The Y axis is perpendicular to the other two.
+    The positive Y axis runs through the Equator at latitude 0&deg;
+    longitude 90&deg;, close to Sumatra in the Indian Ocean.
+    The negative Y axis runs through the Equator at latitude 0&deg;
+    longitude -90&deg;, close to the Galapagos Islands in the Pacific.
+
+    For more details of ECEF see
+    <a href="https://www.mathworks.com/help/map/choose-a-3-d-coordinate-system.html">
+        here
+    </a>.
+</p>
+<p>
+    As we've seen,
+    the position of the poles, equator
+    and Prime Meridian
+    depend on which terrestrial reference frame you are using,
+    so the same goes for ECEF coordinates.
+    <i>When using cartesian coordinates,
+        you need to know which terrestrial reference frame the axes are
+        bound to.</i>
+</p>
+
+<p>
+    If two positions are specified in ECEF coordinates
+    it's easy to figure out the distance between them.
+    A GNSS devices works by measuring
+    the distances to satellites and knowing their position,
+    so it makes sense to specify
+    the positions of the satellites
+    in ECEF coordinates.
+    The receiver figures out
+    its position within the same system.
+</p>
+<p>
+
+    However, surveyors find latitude, longitude and height
+    more useful,
+    so all of my survey devices display their position
+    in that form.
+    The map application on my Apple iPhone does the same.
+</p>
+<p>
+    I also have a Garmin Etrex,
+    which is a hiker's SatNav.
+    It assumes that you are used to
+    UTM coordinates
+    (easting, northing and height above sea level)
+    and it displays its position in that form.
+</p>
+<p>
+    Behind the scenes,
+    all these devices are working in ECEF coordinates
+    and converting to some more convenient form
+    before displaying the result.
+</p>
+
+
+<p>
+    linksList(`3.reference.frames.html', `index.html', `5.utm.html')
+</p>
+
+include(sourceRoot/trailer.m4.html)

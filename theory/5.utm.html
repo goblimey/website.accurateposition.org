@@ -1,0 +1,157 @@
+include(sourceRoot/definitions.m4)
+define(pageTitle, `coordinates')
+include(sourceRoot/leader.m4.html)
+
+<p>
+    linksList(`6.what.three.words.html', `index.html', `4.ecef.html')
+</p>
+
+<h3>Universal Transverse Mercator Coordinates</h3>
+<p>
+    In the early twentieth century,
+    The UK Ordnance Survey
+    used longitude and latitude to define positions
+    as seen on this
+    <a href="https://maps.nls.uk/view/101437072">
+        1938 map of Guildford
+    </a>.
+    If you look at the corners of the map
+    and zoom in,
+    you'll see that it shows longitude
+    along the top and bottom
+    and latitude along each side.
+</p>
+<p>
+    In the 1940s
+    the OS and some other national mapping authorities adopted
+    Universal Transverse Mercator
+    (UTM) coordinates.
+    This approach divides the Ellipsoid into 60 zones,
+    each covering six degrees of longitude.
+    The local surface of each zone is projected onto a flat map
+    and each position on the surface of the Ellipsoid
+    is represented by
+    its distance along an east-west line
+    (its <b><i>easting</i></b>)
+    from a zero point
+    and its distance along a north-south line
+    (its <b><i>northing</i></b>)
+    from the same point.
+    More details on UTM are
+    <a href="https://en.wikipedia.org/wiki/Universal_Transverse_Mercator_coordinate_system">
+        here</a>.
+
+</p>
+<p>
+    A position in three dimensions can be represented
+    by its easting, northing and its height above
+    some base, such as local mean sea level.
+</p>
+<p>
+    During its 1925 to 1962 re-survey of the UK,
+    The Ordnance Survey
+    created
+    the National Grid reference system (OSGB,
+    strictly OSGB36),
+    also known as British National Grid (BNG).
+    It's based on the Airy Spheroid,
+    produced in the 19th Century.
+    More about OSGB36
+    <a href="https://en.wikipedia.org/wiki/Ordnance_Survey_National_Grid">
+        here
+    </a>.
+</p>
+<p>
+    The zero point for OSGB
+    eastings and northings is out at sea
+    to the south-west of Land's End
+    at latitude 49.7668065515&deg; longitude -7.5572420349&deg;.
+</p>
+<p>
+    The notional
+    Mean Sea Level was fixed in the 1920's
+    using the facility at Newlyn.
+    It's about 55 metres above the Ellipsoid.
+</p>
+<p>
+    OS maps printed since the re-survey
+    have shown eastings and northings
+    around the edges.
+    Contour lines show height above sea level.
+</p>
+<p>
+    By the time of the survey
+    the UK scientific community has adopted
+    International Systems (metric) units,
+    but the rest of the country
+    still used the old Imperial units -
+    inches, feet and miles.
+    The OS teams did their measurements in metres
+    but continued to draw their maps in Imperial units,
+    using scales such as
+    six inches to the mile.
+    When the UK went metric in 1971,
+    they rescaled the maps to metric units.
+</p>
+
+<p>
+    OSGB is defined in
+    terms of reference points on the ground
+    laid out during the survey.
+    The OS produced
+    a network of physical markers
+    called Trig Points.
+    The most recognisable of these are
+    four-foot high concrete pillars built
+    at strategic points around the country,
+    usually on high ground so that they can be seen from a distance.
+    These trig points move with continental drift
+    so the OSGB36 grid moves with them.
+</p>
+
+<p>
+    Modern survey equipment is accurate enough to
+    reveal flaws in the Airy Spheroid,
+    making conversion from GPS coordinates
+    to OSGB36 difficult and error-prone.
+</p>
+<p>
+    The UK Ordnance Survey provide
+    <a href="https://www.ordnancesurvey.co.uk/gps/transformation/">
+        this web page
+    </a>
+    which converts between the various formats.
+    It can take a position expressed as
+    latitude, longitude and height above the Ellipsoid
+    in the ETRF89 reference frame
+    and convert it to ECEF coordinates and OSGB36
+    easting, northings and height above mean sea level,
+    but it seems to introduce a significant error.
+    That's a nuisance
+    because here in the UK
+    we've been creating records of positions
+    using
+    OSGB36
+    for the last sixty years
+</p>
+<p>
+    So I have GNSS equipment
+    that can find my position within a couple of centimetres,
+    but if I use that OS web page to
+    convert it to an OS grid reference,
+    I lose a lot of that accuracy.
+</p>
+<p>
+    The OS also provide a
+    <a
+        href='https://www.ordnancesurvey.co.uk/documents/resources/projection-and-transformation-calculations.xls'>spreadsheet</a>
+    that you can download and run on your own computer
+    to convert coordinates from one form to another.
+    I don't know if that's any better.
+</p>
+
+<p>
+    linksList(`6.what.three.words.html', `index.html', `4.ecef.html')
+</p>
+
+include(sourceRoot/trailer.m4.html)
